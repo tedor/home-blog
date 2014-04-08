@@ -1,0 +1,26 @@
+{% load comments i18n %}
+<script type="text/javascript">
+<!--
+	var protect = {name:'{{protect.name}}', code:'{{protect.code}}'}; 
+//-->
+</script>
+
+<form id="comment-form" action="{% comment_form_target %}" method="post">{% csrf_token %}
+  {% if next %}<div><input type="hidden" name="next" value="{{ next }}" /></div>{% endif %}
+  {% for field in form %}
+    {% if field.is_hidden %}
+      <div>{{ field }}</div>
+    {% else %}
+      <p {% if field.errors %} class="error"{% endif %} {% ifequal field.name "honeypot" %} style="display:none;"{% endifequal %}>
+        {{ field }}
+        {% if field.name == "name" %} 
+        	<span id="comment_field_{{ forloop.counter }}" class="auto-help"><a href="javascript:void(0)">?</a><span>{{ field.label }}</span></span>
+        {% endif %}
+      </p>
+    {% endif %}
+  {% endfor %}
+  <p class="submit">
+    	<input type="submit" name="post" class="submit-post" value="{% trans "Post" %}" />
+    	<input style="display:none;" type="submit" name="post" class="sending-post" value="{% trans "Sending" %}..." />
+  </p>
+</form>

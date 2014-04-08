@@ -1,0 +1,81 @@
+<script type="text/javascript">
+$(document).ready(function(){
+
+	qq.UploadDropZone = function(o){};
+	
+	var uploader = new qq.FileUploader({
+		action: "{% url picture_blog_upload %}",
+		element: $('#upload_block')[0],
+		multiple: true,
+		onComplete: function( id, fileName, responseJSON ) {},
+		onAllComplete: function( uploads ) {
+			img_load();
+		},
+		params: {
+			'object_id':'{{object_id}}', 
+			'csrf_token': '{{ csrf_token }}',
+			'csrf_name': 'csrfmiddlewaretoken',
+			'csrf_xname': 'X-CSRFToken',
+		},
+	});
+	  
+	function insertAtCaret(element, text) {
+		if (document.selection) {
+			element.focus();
+			var sel = document.selection.createRange();
+			sel.text = text;
+			element.focus();
+		} else if (element.selectionStart || element.selectionStart === 0) {
+			var startPos = element.selectionStart;
+			var endPos = element.selectionEnd;
+			var scrollTop = element.scrollTop;
+			element.value = element.value.substring(0, startPos) + text + element.value.substring(endPos, element.value.length);
+			element.focus();
+			element.selectionStart = startPos + text.length;
+			element.selectionEnd = startPos + text.length;
+			element.scrollTop = scrollTop;
+		} else {
+			element.value += text;
+			element.focus();
+		}
+	}
+		
+	/*$(".image-item img").draggable({
+	    helper:'clone',  
+	    appendTo:$("textarea#id_text"),
+	    start: function(event, ui) {},
+	    stop: function(event, ui) {
+	    	if($("#" + event.target.id + "_data").size() > 0) {
+	    		insertAtCaret($("textarea#id_text").get(0), $("#" + event.target.id + "_data").text());		    		
+	    	}
+	    }
+	});*/
+	
+	$(".image-item img").click(function(event, ui) {
+    	if($("#" + event.target.id + "_data").size() > 0) {
+    		insertAtCaret($("textarea#id_text").get(0), $("#" + event.target.id + "_data").text());		    		
+    	}
+	});
+});
+	  
+var delete_picture = function(url) {
+	$.ajax({
+		url: url,
+		success: function(){
+		  img_load();
+		}
+	});
+}
+</script>
+
+<div id="upload_block">Upload</div>
+
+{% for image in images %}
+	<div class="image-item">
+		<div class="empty-form" id="image_{{image.id}}_data">[![{{image.caption}}]({{image.absolute_image_thumb_url}})]({{image.absolute_image_big_url}})</div>
+		<div><img id="image_{{image.id}}" src="{{image.absolute_image_super_thumb_url}}" /></div>
+		<div><a href="javascript:void(0);" onclick="delete_picture('{% url picture_blog_delete image.id %}');">Delete</a></div>		
+	</div>
+{% endfor %}
+
+<div class="clear"></div>

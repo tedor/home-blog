@@ -1,0 +1,13 @@
+#id_text_pictures {
+	margin-top:15px;
+}
+
+#id_text {
+    height: 300px;
+    width: 90%;
+}
+
+.image-item {
+	float:left;
+	margin:10px;
+}

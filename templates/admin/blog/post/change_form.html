@@ -1,0 +1,29 @@
+{% extends "admin/change_form.html" %}
+
+{% block extrahead %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/jquery.autocomplete.css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/jquery.ajax_upload.css" />
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.autocomplete.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+          	$("#id_tag").autocomplete("{% url blog_tag_lookup %}", {
+				width: $("#id_tag").width(),
+				multiple: true,
+				multipleSeparator: " "
+           	});
+
+            $("#id_text").parent().after('<div id="id_text_pictures"></div>');
+            img_load();
+
+            $("#id_text").tabby();
+            $("#id_text").elastic();
+        });
+        
+        img_load = function() {        
+            $("#id_text_pictures").load('{% url picture_blog_list %}', {
+            	object_id:{{ object_id }}
+            });
+        }        
+    </script>
+{% endblock %}

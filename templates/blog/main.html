@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load i18n markup static tagging_tags %}
+
+{% block pagelabel %}<span class="blog">{% trans "Blog" %}</span>{% endblock %}
+
+{% block extrahead %}
+	<link rel="stylesheet" href="{% get_static_prefix %}css/blog.css" />
+	<link title="{% trans 'blog feeds' %}" type="application/rss+xml" rel="alternate" href="{% url blog_feeds %}" />	
+    <script type="text/javascript" src="{% get_static_prefix %}js/jquery.elastic.min.js"></script>
+    <script type="text/javascript" src="{% get_static_prefix %}js/jquery.scrollTo.min.js"></script>    
+{% endblock %}
+
+{% block title %}{% trans "Blog" %}{% endblock %}
+
+{% block footer_content %}
+	<div id="footer" class="blog">
+		<div class="image">
+			<p> 
+				{% for tag in post_cloud %}
+					{% if tag %}
+						<a href="{% url post_list_by_tag tag %}" class="tag-{% if tag.font_size <= 10 %}{{tag.font_size}}{% else %}10{% endif %}">{{ tag.name }} ({{ tag.count }})</a>
+					{% endif %}
+				{% endfor %}
+			</p>
+		</div>	
+		<div class="prev"><a class="home" href="{% url home_page %}">{% trans "Home" %}</a></div>	
+		<div class="next"><a class="o" href="{% url about_page %}">{% trans "O!" %}</a></div>	
+		<div class="copy">{% trans "All right reserved."%}</div>
+	</div>
+{% endblock %}

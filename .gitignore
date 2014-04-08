@@ -52,3 +52,9 @@ coverage.xml
 # Sphinx documentation
 docs/_build/
 
+# my
+settings.py
+tedor.kr.ua.db
+.idea/*
+tmp/*
+media/*

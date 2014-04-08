@@ -1,0 +1,15 @@
+<div id="comments">
+  {% for comment in comment_list %}
+  	<div class="comment"  id="c{{ comment.id }}">
+	    <p>
+	    	<span class="fist_char">{{ comment.name|slice:"0:1" }}</span>{{ comment.name|slice:"1:" }}
+	        <span class="date">
+	        {{comment.url}}
+	        	<a href="{{comment.get_absolute_url}}">#</a>
+	        	{{ comment.submit_date|date:"d E Y, H:i" }}
+	        </span>
+	    </p>
+	    <p class="text">{{ comment.comment }}</p>
+    </div>
+  {% endfor %}
+</div>

@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load i18n static %}
+
+{% block extrahead %}<link rel="stylesheet" href="{% get_static_prefix %}css/e404.css" />{% endblock %}
+
+{% block pagelabel %}<span class="e404">{% trans "404" %}</span>{% endblock %}
+
+{% block title %}{% trans "404" %}{% endblock %}
+
+{% block before_content %}
+	<div id="error_img">
+		<img src="{% get_static_prefix %}/img/img_error.png" alt="{% trans '404' %}" />
+	</div>
+{% endblock %}
+
+{% block content %}
+	<p class="error_title">Хм...</p>
+	<p>Видимо что-то случилось, и вы пытались зайти на страницу которая:</p>
+	<ul>
+		<li>Не существует</li>
+		<li>Существует, но не на этом сайте</li>
+		<li>Когда-то существовала, но сейчас не существует</li>
+		<li>Никогда не существовала, и сейчас тоже не существует</li>
+		<li>Могла бы существовать, но на текущий момент что? Правильно - не существует</li>
+	</ul>	
+	<p class="error_title">А-а-а, что же мне теперь делать:</p>
+	<p>Если вы по каким либо причинам попали на эту страницу, то выход есть:</p>
+	<ul>
+		<li>Перейти на домашнюю страницу, кликнув <a href="{% url home_page%}">сюда</a> (надо кликнуть "сюда")</li>			
+		<li>Написать письмо об ошибке, мои координаты можно найти <a href="{% url about_page%}">здесь</a> (надо кликнуть "здесь")</li>
+		<li>Оставаться на этой странице, возможно проблема решится сама собой (тут ничего клацать не надо)</li>
+		<li>Уйти из сайта и забыть о нем навсегда</li>
+	</ul>
+{% endblock %}
+
+{% block footer_content %}
+	<div id="footer" class="e404">
+		<div class="image">
+		</div>	
+		<div class="next"><a class="home" href="{% url blog_page %}">{% trans "Home" %}</a></div>
+		<div class="prev"><a class="home" href="{% url blog_page %}">{% trans "Home" %}</a></div>	
+		<div class="copy">{% trans "All right reserved."%}</div>
+	</div>
+{% endblock %}

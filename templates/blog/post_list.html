@@ -1,0 +1,28 @@
+{% extends "blog/main.html" %}
+{% load i18n markup tagging_tags %}
+
+{% block content %}{% spaceless %}
+    <div id="posts">
+	    {% if posts %}
+	        {% for post in posts %}
+	        	<div id="post-{{post.id}}" class="post">
+			      	<div class="title"><a class="blog" href="{% url blog_post_detail post.slug %}"><span>{{ post.title|slice:"0:1" }}</span>{{ post.title|slice:"1:" }} →</a></div>
+					<div id="post-{{post.id}}-tags" class="tags">
+						<span>
+							{% tags_for_object post as tags %}
+							{% for tag in tags %}
+								{% if tag %}
+									<a href="{% url post_list_by_tag tag %}">{{ tag }}{% if not forloop.last %},{% endif %}</a>
+								{% endif %}
+							{% endfor %}
+						</span>
+					</div>
+					<div class="cut_home blog">{{ post.get_text_cut|markdown }}</div>
+				</div>
+	        {% endfor %}
+		{% else %}
+			<p class="center">{% trans "Posts not found" %}</p>
+		{% endif %}	  
+    </div>
+{% endspaceless %}{% endblock %}
+

@@ -1,0 +1,212 @@
+.cut_home {
+	width: 850px;
+}
+
+#posts .tags {
+	background: url('/static/img/tag.png') no-repeat left bottom;
+	padding: 3px;
+	margin-left:880px;
+	position: absolute;
+}
+
+#posts .tags a, #post .tags a {
+	color: #ffffff;
+	margin-left:.5em;
+}
+
+#posts .tags span {
+	width: 180px;
+	display: inline-block;
+	background-color: #C5DDFF;
+	color: #ffffff;
+	padding: 7px 15px 7px 7px;
+	margin-left: 10px;
+	text-align: center;
+	word-wrap: break-word;
+}
+
+#posts .tags.active {
+	background: url('/static/img/tag_a.png') no-repeat left bottom;
+}
+
+#posts .tags.active span {
+	background-color: #6699FF;
+}
+
+#post .tags {
+	background-color: #6699FF;
+	padding: 5px 15px;
+	text-align: right;
+	margin-top:30px;
+}
+
+.tag-1 { font-size: 12px; } 
+.tag-2 { font-size: 13px; } 
+.tag-3 { font-size: 14px; } 
+.tag-4 { font-size: 15px; } 
+.tag-5 { font-size: 16px; } 
+.tag-6 { font-size: 17px; } 
+.tag-7 { font-size: 18px; } 
+.tag-8 { font-size: 19px; }
+.tag-9 { font-size: 20px; }
+.tag-10 { font-size: 21px; }
+
+#footer .image p {
+    display: inline-block;
+    font-size: 12px;
+    margin-left: 76px;
+    margin-top: 38px;
+    max-height: 82px;
+    text-align: center;
+    width: 704px;
+}
+
+#footer .image p a{
+    margin-left:.5em;
+}
+
+.search-tag {
+	text-align:center;
+}
+.search-tag span {
+	font-weight:bold;
+}
+
+.back.button {
+	margin:15px 0 10px 0;
+}
+
+#footer a:hover {
+	text-decoration: underline;
+}
+
+#footer .blog a {
+	padding: 0 3px;
+}
+
+#post .title {
+	width: 940px;
+	background: white;
+	margin: 0;
+	padding: 7px 0;
+}
+
+#post .active {
+	color: #69F;
+}
+
+#post .title.fixed {
+	border-bottom: 1px solid #000000;
+	position: fixed;
+	top: 0;
+}
+
+#post .title.fixed a.move-top {
+	margin: 0 0 0 7px;
+	padding: 0;
+	display: inline-block;
+	position: absolute;
+	top: 4px;
+}
+
+#post .title.fixed a.add-comment {
+	background: url('/static/img/b_comment.png') no-repeat bottom;
+	width: 22px;
+	height: 22px;
+	display: inline-block;
+	position: absolute;
+	margin: 0 0 0 23px;
+	top: 8px;
+}
+
+#post .header-clone {	
+	overflow:hidden; 
+	white-space:nowrap; 
+	text-overflow:ellipsis; 
+}
+
+div.codehilite {	
+    padding: 0px 10px;
+    margin: 1em 0;
+    background-color: #fafafa;
+    border: solid 1px #ddd;
+    width: auto;
+    overflow: auto;
+    font-family: Consolas, Monaco, Courier New;
+}
+
+div.codehilite pre {	
+    margin: 5px 0px;
+   
+}
+/*---------------------------- VERTICAL ALIGN ----------------------------*/
+#content {
+	overflow:auto;
+	padding-bottom: 286px;
+}
+
+#footer {
+    clear: both;    
+    height: 218px;
+    margin-top: -238px;
+    position: relative;
+}
+
+/*---------------------------- COMMENTS ----------------------------*/
+#comment-list {
+	font-size: 12px;
+	margin: 30px 0 0 0;
+}
+
+#comment-list p {
+	margin: 3px 0;
+}
+
+#comment-box form .auto-help {
+	margin-left:10px;
+}
+
+#comment-box form .auto-help span {
+	margin-left:5px;
+}
+
+#comment-box form p {
+	vertical-align: top;
+}
+
+#comment-box form textarea {
+	width:99%;
+	border: 1px solid #000000;
+	padding: 3px;
+}
+
+#comment-box form input[type=text] {
+	width:30%;
+	border: 1px solid #000000;
+	padding: 3px;
+}
+
+#comment-box .sending-post {
+	background-color: #6699FF;
+}
+
+#comment-list .date {
+	font-size: 10px;
+	color: #666666;
+	float:right;
+}
+
+#comment-list .comment {
+	border-bottom: 1px solid #C5DDFF;
+	margin-bottom: 15px;
+	padding-bottom:10px;
+}
+
+#comment-list .text {
+	padding: 0 0 0 20px;
+}
+
+#comment-list .comment .fist_char {
+	color: #6699FF;
+	font-weight: bold;
+}

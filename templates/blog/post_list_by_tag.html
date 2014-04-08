@@ -1,0 +1,14 @@
+{% extends "blog/post_list.html" %}
+{% load i18n markup tagging_tags %}
+
+{% block content %}{% spaceless %}
+	<div class="back button"><a href="{% url blog_page %}">{% trans "Back to the past" %}</a></div>
+	<div class="search-tag">{% trans "Search by tag:" %} <span>{{ tag_search }}</span></div>
+	
+	{% if posts.count > 0 %}
+		{{ block.super }}
+	{% else %}
+		<p class="center">{% trans "Posts not found" %}</p>		
+	{% endif %}
+{% endspaceless %}{% endblock %}
+

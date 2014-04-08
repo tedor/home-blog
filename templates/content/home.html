@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block extrahead %}<link title="{% trans 'all feeds' %}" type="application/rss+xml" rel="alternate" href="{% url home_feeds %}" />{% endblock %}
+	
+{% block pagelabel %}<span class="home">{% trans "Home" %}</span>{% endblock %}
+
+{% block title %}{% trans "Home" %}{% endblock %}
+
+{% block content %}{% spaceless %}
+		{% for item in data %}
+			<div class="title"><a class="blog" href="{{ item.url }}"><span>{{ item.title|slice:"0:1" }}</span>{{ item.title|slice:"1:" }} →</a></div>
+			<div class="cut_home blog">{{ item.text }}</div>
+	    {% endfor %}
+    
+{% endspaceless %}{% endblock %}
+
+{% block footer_content %}
+	<div id="footer" class="home">
+		<div class="image">
+			<p>{{ data_random_content }}</p>
+		</div>	
+		<div class="next"><a class="blog" href="{% url blog_page %}">{% trans "Blog" %}</a></div>	
+		<div class="copy">{% trans "All right reserved."%}</div>
+	</div>
+{% endblock %}

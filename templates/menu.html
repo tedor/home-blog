@@ -1,0 +1,10 @@
+{% block menu %}
+{% load i18n %}
+<ul>
+	<li><a class="home" href="{% url home_page %}">{% trans "Home" %}</a></li>
+	<li><a class="blog" href="{% url blog_page %}">{% trans "Blog" %}</a></li>
+	<li><a class="weather" href="http://weather.tedor.kr.ua/">{% trans "Weather" %}</a></li>
+	<li><a class="o" href="{% url about_page %}">{% trans "O!" %}</a></li>
+	<li></li>			
+</ul>
+{% endblock %}

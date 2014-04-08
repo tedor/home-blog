@@ -1,0 +1,10 @@
+User-agent: *
+
+Host: www.tedor.kr.ua
+Crawl-delay: 1
+
+Allow: /
+
+Disallow: /admin/
+
+Sitemap: http://www.tedor.kr.ua/blog/sitemap.xml

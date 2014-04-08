@@ -1,0 +1,11 @@
+/*---------------------------- VERTICAL ALIGN ----------------------------*/
+#content {
+	padding-bottom: 200px;
+}
+
+#footer {
+    clear: both;
+    height: 177px;
+    margin-top: -245px;
+    position: relative;
+}

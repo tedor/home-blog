@@ -1,0 +1,29 @@
+{% extends "admin/base.html" %}
+
+{% load static %}
+{% load i18n %}
+
+{% block title %}{{ title }} | {% trans 'Django site admin' %}{% endblock %}
+
+{% block extrastyle %}
+	{{ block.super }}
+	<link rel="stylesheet" type="text/css" href="{% get_static_prefix %}css/admin.css" />
+	<link rel="stylesheet" type="text/css" href="{% get_static_prefix %}css/jquery.ui.css" />	
+{% endblock %}
+
+
+{% block branding %}
+<h1 id="site-name">{% trans 'Tedor administration' %}</h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
+
+{% block extrahead %}
+	{{ block.super }}
+    <script type="text/javascript" src="{% get_static_prefix %}js/jquery.min.js"></script>
+	<script type="text/javascript" src="{% get_static_prefix %}js/jquery.ui.min.js"></script>
+	<script type="text/javascript" src="{% get_static_prefix %}js/jquery.ajax_handlers.js"></script>
+	<script type="text/javascript" src="{% get_static_prefix %}js/jquery.ajax_upload.js"></script>
+	<script type="text/javascript" src="{% get_static_prefix %}js/jquery.textarea.js"></script>
+	<script type="text/javascript" src="{% get_static_prefix %}js/jquery.elastic.js"></script>
+{% endblock %}

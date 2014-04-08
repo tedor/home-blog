@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+{% spaceless %}
+{% load static i18n template_additions %}
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="robots" content="index, follow" />
+	<link href="/favicon.ico"  rel="shortcut icon" />	
+	<link rel="stylesheet" href="{% get_static_prefix %}css/code.css" />
+	<script type="text/javascript" src="{% get_static_prefix %}js/jquery.min.js"></script>
+	<script type="text/javascript" src="{% get_static_prefix %}js/jquery.ajax_handlers.js"></script>
+    {% if request.session.is_mobile %}
+    	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	    <link rel="stylesheet" href="{% get_static_prefix %}css/mobile-main.css" />	
+		<script type="text/javascript" src="{% get_static_prefix %}js/mobile.main.js"></script>	
+    {% else %}	
+	    <link rel="stylesheet" href="{% get_static_prefix %}css/main.css" />
+		<script type="text/javascript" src="{% get_static_prefix %}js/main.js"></script>
+   		{% block extrahead %}{% endblock %}
+	{% endif %}
+</head>
+<body> 
+<div id="wrap" data-role="page">
+		<div id="head"  data-role="header">
+			{% include 'menu.html' %}
+		</div>
+		<div id="page_label">
+			{% block pagelabel %}{% endblock %}
+		</div>
+		{% block before_content %}{% endblock %}
+		<div id="content" data-role="content">
+			{% endspaceless %}{% block content %}{% endblock %}{% spaceless %}
+		</div>
+	</div>
+	
+	{% if request.session.is_mobile %}	
+		<div id="footer">	
+			<div class="copy">{% trans "All right reserved."%}</div>
+		</div>
+	{% else %}
+		{% block footer_content %}	
+			<div id="footer">
+				<div class="home image">
+					<p>{{ data_random_content }}</p>
+				</div>	
+				<div class="prev"><a class="blog" href="{% url home_page %}">{% trans "Home" %}</a></div>	
+				<div class="next"><a class="blog" href="{% url home_page %}">{% trans "Home" %}</a></div>	
+				<div class="copy">{% trans "All right reserved."%}</div>
+			</div>
+		{% endblock %}
+	{% endif %}
+	{% if not statistic_disable %}
+		{% analyticsjs %}
+	{% endif %}
+</body>
+</html>
+{% endspaceless %}
+
+<!--
+TODO:
+	  Create best site in the world	
+	√ Add boobs to html code | ( . Y . ) <- boobs
+	  Be best programmer on the earth	 
+	√ Insert funny TODO in the html code
+	√ Create W3C valid html
+	
+For developers:
+	http://tedor.kr.ua/developers/
+-->
