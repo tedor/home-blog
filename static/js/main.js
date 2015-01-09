@@ -2,7 +2,8 @@ $(document).ready(function(){
 	var small_images = [];    
     var headers_top = [];   
     var headers_top_height = 0;
-    var post_title_clone = null;    
+    var post_title_clone = null;
+    var scrollToTopVisible = false;
 		
 	blog_form_submit = function(event) {
 		event.preventDefault();
@@ -99,13 +100,19 @@ $(document).ready(function(){
         $('#post').each(function () {
             var post = $(this);
             var title = post.find('.title');
-            
+
             if (scroll_top > post.position().top) {
             	post_title_clone.show(0);
             } else {
             	post_title_clone.hide(0);
             }
         });
+
+        if (scroll_top > 140) {
+            show_scroll_top();
+        } else {
+            hide_scroll_top();
+        }
     });
 
     $('#post h1, #post h2').each(function (id) {
@@ -121,14 +128,14 @@ $(document).ready(function(){
             headers_top[id].original = header;
 	    	headers_top[id].clone.css({
 	    		'position' 	: 'fixed',
-	    		'top'		: headers_top[id].offset,
+	    		'top'		: headers_top[id].offset + 10,
 	    		'cursor'	: 'pointer',
 	    		'max-width' : left_side_width - 25
 	    	});
 	    	headers_top[id].clone.addClass('header-clone');
 	    	header.after(headers_top[id].clone);
 	    	headers_top[id].clone.hide(0);
-	    	headers_top[id].clone.css('margin-left', (headers_top[id].clone.width() + 20)*-1);
+	    	headers_top[id].clone.css('margin-left', ($('#content').width() + 10));
 
 	    	headers_top[id].clone.click(function(){$.scrollTo(header, 500, {offset: -10});})
     	}
@@ -155,7 +162,37 @@ $(document).ready(function(){
             headers_top[id].top = headers_top[id].original.position().top - $('#post .title').height();
         }
     });
-	
+
+    show_scroll_top = function() {
+        var scrollToTop = $('.scroll-to-top');
+        if (!scrollToTopVisible && scrollToTop.size() > 0) {
+            scrollToTop
+                .css({
+                    'display': 'block',
+                    'height': $(document).height(),
+                    'left': scrollToTop.width()*-1
+                })
+                .animate({
+                    left: 0
+                  }, 100);
+
+            scrollToTopVisible = true;
+        }
+    };
+
+    hide_scroll_top = function() {
+        var scrollToTop = $('.scroll-to-top');
+        if (scrollToTopVisible && scrollToTop.size() > 0) {
+            scrollToTop
+                .animate({
+                    'left': scrollToTop.width() * -1
+                }, 100);
+
+            scrollToTopVisible = false;
+        }
+    };
+
+
 	init_auto_help();
 	init_blog_comments();
 });

@@ -16,19 +16,31 @@ def get_mind_stream_random():
         return ''
 
 def home(request):
-    data = get_all_data()
-    
+    post = []
+    try:
+        post = Post.objects.filter(status=Post.STATUS_PUBLIC).order_by('-created_at')[:1][0]
+    except :
+        pass
+
     ''' Get mind stream content '''
     data_random_content = get_mind_stream_random()
 
-    return render(request, 'content/home.html', {'data':data, 'data_random_content':data_random_content})
+    return render(request, 'content/home.html', {'post':post, 'data_random_content':data_random_content})
 
 def get_all_data():
     data = []
     try:
         ''' Get data from blog '''
-        data = [{"title":v.title, "text":markdown(v.text.split(Post.TEXT_CUT)[0]), "date":v.created_at, "url":v.get_absolute_url()} for v in Post.objects.filter(status=Post.STATUS_PUBLIC).order_by('-created_at')[:10]]
-    
+        data = [
+            {
+                "title":v.title,
+                "text":markdown(v.text.split(Post.TEXT_CUT)[0]),
+                "date":v.created_at,
+                "url":v.get_absolute_url()
+            }
+            for v in Post.objects.filter(status=Post.STATUS_PUBLIC).order_by('-created_at')[:10]
+        ]
+
         data.sort(key=lambda item: item['date'], reverse=True)
         data = data[:10]
     except :

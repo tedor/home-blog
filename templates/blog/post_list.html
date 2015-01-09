@@ -2,6 +2,9 @@
 {% load i18n markup tagging_tags %}
 
 {% block content %}{% spaceless %}
+    <div class="scroll-to-top move-top">
+        <div class="icon"></div>
+    </div>
     <div id="posts">
 	    {% if posts %}
 	        {% for post in posts %}

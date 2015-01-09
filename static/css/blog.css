@@ -9,7 +9,7 @@
 	position: absolute;
 }
 
-#posts .tags a, #post .tags a {
+#posts .tags a, #post .tags a, #post-home a {
 	color: #ffffff;
 	margin-left:.5em;
 }
@@ -89,6 +89,9 @@
 	background: white;
 	margin: 0;
 	padding: 7px 0;
+}
+
+#post.blog .title {
 }
 
 #post .active {
@@ -209,4 +212,9 @@ div.codehilite pre {
 #comment-list .comment .fist_char {
 	color: #6699FF;
 	font-weight: bold;
+}
+
+/*---------------------------- Scroll ----------------------------*/
+.scroll-to-top {
+    background: #6699FF;
 }

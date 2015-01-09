@@ -39,7 +39,7 @@ def post_list_by_tag(request, tag):
 def post_detail(request, slug = ''):
     post_cloud = get_tag_cloud()
     statistic_disable = False
-    protect = get_protect_data()
+    post = None
         
     if(slug):
         try:
@@ -49,7 +49,7 @@ def post_detail(request, slug = ''):
         except Post.DoesNotExist:
             raise Http404
         
-    return render(request, 'blog/post_detail.html', {'post': post, 'post_cloud': post_cloud, 'statistic_disable':statistic_disable, 'protect' : protect}, context_instance=RequestContext(request))
+    return render(request, 'blog/post_detail.html', {'post': post, 'post_cloud': post_cloud, 'statistic_disable':statistic_disable}, context_instance=RequestContext(request))
 
 def tag_lookup(request):
     # Default return list

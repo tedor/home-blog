@@ -287,11 +287,9 @@ a.home, a.blog, a.lab, a.o, a.weather {
 
 #footer .prev a, #footer .next a {
 	display: inline-block;
-	width: 86px;
-	height: 50px;
+    margin: 21px 33px 0;
 	font-weight: bold;
 	font-size: 18px;
-	background: url("/static/img/footer_left.png") no-repeat left bottom;
 }
 
 #footer .prev a:hover, #footer .next a:hover {
@@ -306,11 +304,15 @@ a.home, a.blog, a.lab, a.o, a.weather {
 	float: right;
 }
 
-#footer .prev a {
-	background: url("/static/img/footer_left.png") no-repeat left bottom;
+#footer .prev {
+    height: 50px;
+	background: url("/static/img/previous.png") no-repeat left bottom;
+    background-size: 35px;
 }
-#footer .next a{
-	background: url("/static/img/footer_right.png") no-repeat right bottom;
+#footer .next{
+    height: 50px;
+	background: url("/static/img/forward.png") no-repeat right bottom;
+    background-size: 35px;
 }
 
 /*---------------------------- 404 ----------------------------*/
@@ -376,4 +378,28 @@ a.home, a.blog, a.lab, a.o, a.weather {
 	background: url("/static/img/share/vk.png") no-repeat;
 	width: 20px;
 	height: 20px;	
+}
+
+
+/*---------------------------- Scroll ----------------------------*/
+.scroll-to-top {
+    position: fixed;
+    background: #FFCC33;
+    opacity: 0.1;
+    width: 100px;
+    left:0;
+    top:0;
+    display: none;
+    cursor: pointer;
+}
+
+.scroll-to-top .icon {
+    background: url("/static/img/scroll-up.png") no-repeat;
+    width: 50px;
+    height: 50px;
+    margin: 10px 25px;
+}
+
+.scroll-to-top:hover {
+    opacity: 1;
 }

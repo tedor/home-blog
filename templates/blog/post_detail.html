@@ -1,5 +1,5 @@
 {% extends "blog/main.html" %}
-{% load i18n markup comments tagging_tags static %}
+{% load i18n markup tagging_tags static %}
 
 {% block title %}{{ post.title }}{% endblock %}
 {% block content_title %}
@@ -7,8 +7,11 @@
 {% endblock %}
 
 {% block content %}{% spaceless %}
+    <div class="scroll-to-top move-top">
+        <div class="icon"></div>
+    </div>
     <div class="back button"><a href="{% url blog.views.post_list %}">{% trans "Back to the past" %}</a></div>
-    <div id="post">
+    <div id="post" class="blog">
     	<div class="title">
     		<span>{{ post.title|slice:"0:1" }}</span>{{ post.title|slice:"1:" }}
     		<div class='share'>
@@ -20,8 +23,6 @@
     	</div>
     	<div class="title fixed" style="display:none;">
     		<span>{{ post.title|slice:"0:1" }}</span>{{ post.title|slice:"1:" }}
-    		<a href="javascript:void(0)" title="{% trans 'Move top' %}" class="move-top">&uarr;</a>
-    		<a href="javascript:void(0)" title="{% trans 'Add comment' %}" class="add-comment"></a>
     		<div class='share'>
     			<a target="_blank" href="http://vkontakte.ru/share.php?url=http://tedor.kr.ua{% url blog_post_detail post.slug %}" class="vkontakte" title="{% trans "Share in Vkontakte" %}"></a>
                 <a target="_blank" href="http://www.facebook.com/sharer.php?u=http://tedor.kr.ua{% url blog_post_detail post.slug %}" class="facebook" title="{% trans "Share in Facebook" %}"></a>
@@ -38,12 +39,5 @@
 				{% endif %}
 			{% endfor %}
 		</div>
-    </div>
-    
-    <div id="comment-list">
-    	{% render_comment_list for post %}
-    </div>
-    <div id="comment-box">
-    	{% render_comment_form for post %}
     </div>
 {% endspaceless %}{% endblock %}

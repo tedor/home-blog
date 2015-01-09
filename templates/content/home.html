@@ -1,17 +1,52 @@
 {% extends 'base.html' %}
-{% load i18n %}
+{% load i18n markup tagging_tags static %}
 
-{% block extrahead %}<link title="{% trans 'all feeds' %}" type="application/rss+xml" rel="alternate" href="{% url home_feeds %}" />{% endblock %}
+{% block extrahead %}
+    <link rel="stylesheet" href="{% get_static_prefix %}css/blog.css" />
+    <link rel="stylesheet" href="{% get_static_prefix %}css/home.css" />
+    <link title="{% trans 'all feeds' %}" type="application/rss+xml" rel="alternate" href="{% url home_feeds %}" />
+    <script type="text/javascript" src="{% get_static_prefix %}js/jquery.elastic.min.js"></script>
+    <script type="text/javascript" src="{% get_static_prefix %}js/jquery.scrollTo.min.js"></script>
+{% endblock %}
 	
 {% block pagelabel %}<span class="home">{% trans "Home" %}</span>{% endblock %}
 
 {% block title %}{% trans "Home" %}{% endblock %}
 
 {% block content %}{% spaceless %}
-		{% for item in data %}
-			<div class="title"><a class="blog" href="{{ item.url }}"><span>{{ item.title|slice:"0:1" }}</span>{{ item.title|slice:"1:" }} →</a></div>
-			<div class="cut_home blog">{{ item.text }}</div>
-	    {% endfor %}
+    <div class="scroll-to-top move-top">
+        <div class="icon"></div>
+    </div>
+    <div>&nbsp;</div>
+    <div id="post">
+    	<div class="title">
+    		<span>{{ post.title|slice:"0:1" }}</span>{{ post.title|slice:"1:" }}
+    		<div class='share'>
+    			<a target="_blank" href="http://vkontakte.ru/share.php?url=http://tedor.kr.ua{% url blog_post_detail post.slug %}" class="vkontakte" title="{% trans "Share in Vkontakte" %}"></a>
+                <a target="_blank" href="http://www.facebook.com/sharer.php?u=http://tedor.kr.ua{% url blog_post_detail post.slug %}" class="facebook" title="{% trans "Share in Facebook" %}"></a>
+                <a target="_blank" href="https://plus.google.com/share?url=http://tedor.kr.ua{% url blog_post_detail post.slug %}&text={{post.title|urlencode}}&via=tedorinet" class="google" title="{% trans "Share in Google+" %}"></a>
+                <a target="_blank" href="http://twitter.com/share?url=http://tedor.kr.ua{% url blog_post_detail post.slug %}&text={{post.title|urlencode}}&via=tedorinet" class="twitter" title="{% trans "Share in Twitter" %}"></a>
+            </div>
+    	</div>
+    	<div class="title fixed" style="display:none;">
+    		<span>{{ post.title|slice:"0:1" }}</span>{{ post.title|slice:"1:" }}
+    		<div class='share'>
+    			<a target="_blank" href="http://vkontakte.ru/share.php?url=http://tedor.kr.ua{% url blog_post_detail post.slug %}" class="vkontakte" title="{% trans "Share in Vkontakte" %}"></a>
+                <a target="_blank" href="http://www.facebook.com/sharer.php?u=http://tedor.kr.ua{% url blog_post_detail post.slug %}" class="facebook" title="{% trans "Share in Facebook" %}"></a>
+                <a target="_blank" href="https://plus.google.com/share?url=http://tedor.kr.ua{% url blog_post_detail post.slug %}&text={{post.title|urlencode}}&via=tedorinet" class="google" title="{% trans "Share in Google+" %}"></a>
+                <a target="_blank" href="http://twitter.com/share?url=http://tedor.kr.ua{% url blog_post_detail post.slug %}&text={{post.title|urlencode}}&via=tedorinet" class="twitter" title="{% trans "Share in Twitter" %}"></a>
+            </div>
+    	</div>
+        <div class="content">{% endspaceless %}{{ post.get_text|markdown:"codehilite" }}{% spaceless %}</div>
+        <div class="tags">
+	        {% tags_for_object post as tags %}
+	        {% for tag in tags %}
+				{% if tag %}
+					<a href="{% url post_list_by_tag tag %}">{{ tag }}{% if not forloop.last %},{% endif %}</a>
+				{% endif %}
+			{% endfor %}
+		</div>
+    </div>
     
 {% endspaceless %}{% endblock %}
 

@@ -1,0 +1,49 @@
+/*---------------------------- FOOTER ----------------------------*/
+
+#footer {
+    clear: both;
+    height: 182px;
+    margin-top: -202px;
+    position: relative;
+}
+
+#footer {
+	text-align: center;
+	font-size: 12px;
+}
+
+#footer .copy {
+	text-align: center;
+	background-color: #000000;
+	color: #ffffff;
+	padding: 10px;
+	height: 18px;
+	font-size: 11px;
+}
+
+
+#footer .image p {
+	display: inline-block;
+	text-align: center;
+	margin-top:80px;
+	width:800px;
+	font-size: 12px;
+}
+
+/*---------------------------- Scroll ----------------------------*/
+.scroll-to-top {
+    background: #FFCC33;
+}
+
+/*---------------------------- Post ----------------------------*/
+#post .active {
+    color: #FFCC33;
+}
+
+#post .tags {
+    background-color: #FFCC33;
+}
+
+#posts .tags a, #post .tags a {
+    color: #000000;
+}
