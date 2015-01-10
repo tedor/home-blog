@@ -135,7 +135,7 @@ $(document).ready(function(){
 	    	headers_top[id].clone.addClass('header-clone');
 	    	header.after(headers_top[id].clone);
 	    	headers_top[id].clone.hide(0);
-	    	headers_top[id].clone.css('margin-left', ($('#content').width() + 10));
+	    	headers_top[id].clone.css('margin-left', ($('#content').width() + 20));
 
 	    	headers_top[id].clone.click(function(){$.scrollTo(header, 500, {offset: -10});})
     	}
